@@ -15,7 +15,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBlock FontSize="25" HorizontalAlignment="Left" Margin="20,0,0,0" Text="WebServices" VerticalAlignment="Top" Height="38"/>
-        <GridView x:Name="myGridV" ItemsSource="{Binding Teams}" HorizontalAlignment="Left" Margin="0,38,0,0">
+        <GridView x:Name="myGridV" ItemsSource="{Binding TeamsWebServices}" HorizontalAlignment="Left" Margin="0,38,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="25">
@@ -27,13 +27,12 @@
             </GridView.ItemTemplate>
         </GridView>
 
-        <GridView x:Name="myGridVDB" Grid.Column="1" ItemsSource="{Binding Teams}" HorizontalAlignment="Left"  Margin="0,38,0,0">
+        <GridView x:Name="myGridVDB" Grid.Column="1" ItemsSource="{Binding TeamsBD}" HorizontalAlignment="Left"  Margin="0,38,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="25">
-                        <Image x:Name="image" Margin="0,0,0,0" Source="{Binding imgPath}" Height="150" Width="150" Stretch="Fill"/>
-                        <TextBlock x:Name="textBox" Text="{Binding name}" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
-                        <Button Click="Button_Click" Content="Save"/>
+                        <Image x:Name="image" Source="{Binding imgPath}" Height="150" Width="150" Stretch="Fill"/>
+                        <TextBlock x:Name="textBox" Margin="0,0,0,40" Text="{Binding name}" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

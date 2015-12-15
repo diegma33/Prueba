@@ -1,31 +1,15 @@
 ﻿using Prueba.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Data.Json;
-using Windows.UI.Xaml.Controls;
 
 namespace Prueba.Services
 {
     static class RemoteServices
     {
-        public static List<Team> getTeams()
-        {
-            //List<Team> teamList2=testWebServices().Result;
-            List<Team> teamList = new List<Team>();
-            teamList.Add(new Team() { imgPath = "/Assets/almeria.jpg", name = "Almeria" });
-            teamList.Add(new Team() { imgPath = "/Assets/atMadrid.png", name = "AtMadrid" });
-            teamList.Add(new Team() { imgPath = "/Assets/barca.png", name = "Barca" });
-            teamList.Add(new Team() { imgPath = "/Assets/espanyol.png", name = "Espanyol" });
-            teamList.Add(new Team() { imgPath = "/Assets/levante.jpg", name = "Levante" });
-            teamList.Add(new Team() { imgPath = "/Assets/realMadrid.jpg", name = "Real Madrid" });
-
-            return teamList;
-        }
-
-        public static async void testWebServices(Object o)
+        public static async Task<List<Team>> getTeamWebServices()
         {
             List<Team> teamList = new List<Team>();
             Uri uri = new Uri("http://app.konacloud.io/api/team/players/teams");
@@ -37,16 +21,16 @@ namespace Prueba.Services
             }
             catch
             {
-                // Details in ex.Message and ex.HResult.       
+                return null;    
             }
 
             JsonArray root = JsonArray.Parse(result);
-            for(uint i= 0; i < root.Count; i++)
+            for(uint it= 0; it < root.Count; it++)
             {
-                JsonObject h = root.GetObjectAt(i);
+                JsonObject item = root.GetObjectAt(it);
                 try
                 {
-                    teamList.Add(new Team() { imgPath = h["image"].GetString(), name = h["name"].GetString() });
+                    teamList.Add(new Team() { imgPath = item["image"].GetString(), name = item["name"].GetString() });
                 }
                 catch
                 {
@@ -56,7 +40,7 @@ namespace Prueba.Services
             }
             var settingsVal = root.GetObjectAt(0);
             httpClient.Dispose();
-            (o as GridView).ItemsSource = teamList;
+            return teamList;
         }
     }
 }
