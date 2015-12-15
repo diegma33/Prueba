@@ -51,16 +51,13 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
         <usercontrol:TeamImage  Grid.Row="1" Margin="100,0,0,0" DataContext="{Binding}"/>
-
-        <!--<ListView x:Name="listView"  Grid.Row="1" Margin="49,0,40,0">
-            <Rectangle Fill="Red" Height="100" Width="100"/>
-            <Rectangle Fill="Orange" Height="100" Width="100"/>
-            <Rectangle Fill="Brown" Height="100" Width="100"/>
-            <Rectangle Fill="Blue" Height="100" Width="100"/>
-            <Rectangle Fill="Red" Height="100" Width="100"/>
-            <Rectangle Fill="Orange" Height="100" Width="100"/>
-            <Rectangle Fill="Brown" Height="100" Width="100"/>
-            <Rectangle Fill="Blue" Height="100" Width="100"/>
-        </ListView>-->
     </Grid>
+    <Page.BottomAppBar>
+        <AppBar>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <AppBarButton x:Name="Save" Icon="Save" Label="Save All"/>
+                <AppBarButton x:Name="Drop" Click="Drop_Click" Icon="Delete" Label="Drop DB"/>
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
 </Page>

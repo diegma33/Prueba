@@ -1,4 +1,5 @@
-﻿using Prueba.Services;
+﻿using Prueba.Models;
+using Prueba.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,12 +24,14 @@ namespace Prueba.UserControls
         public TeamImage()
         {
             this.InitializeComponent();
-            RemoteServices.testWebServices(ViewControl);
+            RemoteServices.testWebServices(myGridV);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            RemoteServices.testWebServices(ViewControl);
+            Team selectedTeam =(Team) ((Button)e.OriginalSource).DataContext;
+            TeamDAL.insertTeam(selectedTeam);
+            myGridVDB.ItemsSource=await TeamDAL.getAllTeam();
         }
     }
 }

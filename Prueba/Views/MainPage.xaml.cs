@@ -102,5 +102,10 @@ namespace Prueba.Views
         }
 
         #endregion
+
+        private void Drop_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
